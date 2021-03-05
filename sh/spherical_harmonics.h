@@ -104,6 +104,7 @@ Eigen::Vector2d ToImageCoords(double phi, double theta, int width, int height);
 // for the given spherical coordinates, @phi and @theta.
 // For low values of @l this will use a hard-coded function, otherwise it
 // will fallback to EvalSHSlow that uses a recurrence relation to support all l.
+// 计算SH基函数的值, l,m为SH的索引, 每个SH基函数都是phi和theta的函数
 double EvalSH(int l, int m, double phi, double theta);
 
 // Evaluate the spherical harmonic basis function of degree @l and order @m
@@ -136,6 +137,7 @@ double EvalSHSlow(int l, int m, const Eigen::Vector3d& dir);
 // many samples. The recommended default kDefaultSampleCount should be
 // sufficiently high for most functions, but is also likely overly conservative
 // for many applications.
+// 给定函数拟合SH系数
 std::unique_ptr<std::vector<double>> ProjectFunction(
     int order, const SphericalFunction& func, int sample_count);
 
@@ -147,6 +149,7 @@ std::unique_ptr<std::vector<double>> ProjectFunction(
 // This fits three different functions, one for each color channel. The
 // coefficients for these functions are stored in the respective indices
 // of the Array3f values of the returned vector.
+// 给定equirectangle图拟合SH系数,不需要均匀随机采样
 std::unique_ptr<std::vector<Eigen::Array3f>> ProjectEnvironment(
     int order, const Image& env);
 
@@ -160,6 +163,7 @@ std::unique_ptr<std::vector<double>> ProjectSparseSamples(
     int order, const std::vector<Eigen::Vector3d>& dirs,
     const std::vector<double>& values);
 
+// 给定SH系数,计算phi,theta的值
 // Evaluate the already computed coefficients for the SH basis functions up
 // to @order, at the coordinates @phi and @theta. The length of the @coeffs
 // vector must be equal to GetCoefficientCount(order).

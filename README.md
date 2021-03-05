@@ -1,6 +1,17 @@
 3D Graphics-oriented Spherical Harmonics Library
 ================================================
 
+add cmake list and demo code for opencv image.
+
+** How to use **
+mkdir build
+cd build
+cmake ..
+make -j4
+./sherical_harmonics ../image/dir_0_chrome256.jpg
+
+================================================
+
 Spherical harmonics can be a tricky thing to wrap your head around.
 Even once the basic theories are understood, there's some surprisingly
 finicky implementation work to get the functions coded properly.

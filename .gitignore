@@ -1,6 +1,8 @@
-#ignore editor backups
+build/
+lib/
 *~
-
-#ignore bazel build directories
-bazel-*
-
+*.orig
+*.obj
+*.so
+*.a
+.vscode/
